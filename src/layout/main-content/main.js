@@ -3,6 +3,7 @@ import React, { useEffect, useState }  from 'react';
 import './main.css';
 import OfferDetails from '../../components/offer-details/offerdetails';
 import ShelterDetails from '../../components/shelter/shelter-details/shelter-details';
+import AdopterDetails from '../../components/adopter-details/adopterdetails';
 
 const MainContent = () => {
   const [data, setData] = useState(null);
@@ -10,7 +11,7 @@ const MainContent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/getOffer?id=' + 2, { cache: "no-cache"});
+        const response = await fetch('http://localhost:8080/api/getOffer?id=' + 1, { cache: "no-cache"});
         const result = await response.json();
 
         setData(result);
@@ -25,7 +26,7 @@ const MainContent = () => {
   return (
     <div className="main-content">
       {/* Main content goes here */}
-      <OfferDetails offer={data}></OfferDetails>
+      <AdopterDetails></AdopterDetails>
     </div>
   );
 };
