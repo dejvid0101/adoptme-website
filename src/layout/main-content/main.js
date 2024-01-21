@@ -1,33 +1,17 @@
-// MainContent.js
-import React, { useEffect, useState }  from 'react';
-import './main.css';
-import OfferDetails from '../../components/offer-details/offerdetails';
-import ShelterDetails from '../../components/shelter/shelter-details/shelter-details';
-import AdopterDetails from '../../components/adopter-details/adopterdetails';
+// App.js
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Pets from '../../components/pets/pets';
+import PetDetails from '../../components/pet-details/pet-details';
 
 const MainContent = () => {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:8080/api/getOffer?id=' + 1, { cache: "no-cache"});
-        const result = await response.json();
-
-        setData(result);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   return (
-    <div className="main-content">
-      {/* Main content goes here */}
-      <AdopterDetails></AdopterDetails>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/pets" element={<Pets></Pets>} />
+        <Route path="/pets/:id" element={<PetDetails></PetDetails>} />
+        </Routes>
+    </BrowserRouter>
   );
 };
 
