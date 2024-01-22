@@ -9,12 +9,12 @@ const PetDetails = () => {
   // Assuming pet details are fetched from an API endpoint
   const pet = {
     id: id,
-    name: 'Fluffy',
-    age: 2,
-    gender: 'Female',
-    species: 'Cat',
-    shelter: 'Rescue Shelter',
-    health: 'Good',
+    Name: 'Fluffy',
+    Age: 2,
+    Gender: 'FEMALE',
+    Species: 'Cat',
+    Shelter: 'Rescue Shelter',
+    Health: 'HEALTHY',
   };
 
   const handleAdoptMeClick = () => {

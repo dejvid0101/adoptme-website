@@ -6,7 +6,6 @@ const AdoptionOfferComponent = ({ pet }) => {
         Name: '',
         Phone: '',
         Email: '',
-        Password: '',
       adoptionTerms: ''
     });
 
@@ -18,8 +17,7 @@ const AdoptionOfferComponent = ({ pet }) => {
         {
           Name: adoptionOffer.Name,
           Phone: adoptionOffer.Phone,
-          Email: adoptionOffer.Email,
-          Password: adoptionOffer.Password
+          Email: adoptionOffer.Email
         },
         adoptionTerms: adoptionOffer.adoptionTerms
       }
@@ -31,7 +29,7 @@ const AdoptionOfferComponent = ({ pet }) => {
         console.log(JSON.stringify(adaptOffer()));
     
         // Your API endpoint URL
-        const apiUrl = 'http://localhost:8080/api/addAdopter';
+        const apiUrl = 'http://localhost:8080/api/addOffer';
     
         // Make a POST request with the form data
         fetch(apiUrl, {
@@ -76,12 +74,6 @@ const updateFormObject = (e) => {
         <label>
           Email:
           <input type="text" name="Email" value={adoptionOffer.Email} onChange={updateFormObject}/>
-        </label>
-        <br></br>
-  
-        <label>
-          Password:
-          <input type="text" name="Password" value={adoptionOffer.Password} onChange={updateFormObject}/>
         </label>
         <br></br>
 
