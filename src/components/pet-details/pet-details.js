@@ -1,36 +1,46 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import AdoptionOfferComponent from '../adoption-offer/adoption-offer';
 
 const PetDetails = () => {
   const { id } = useParams();
   const redirect=useNavigate();
+  const [pet, setPet] = useState(null);
 
-  // Assuming pet details are fetched from an API endpoint
-  const pet = {
-    id: id,
-    Name: 'Fluffy',
-    Age: 2,
-    Gender: 'FEMALE',
-    Species: 'Cat',
-    Shelter: 'Rescue Shelter',
-    Health: 'HEALTHY',
-  };
+    try {
+      fetch(`http://localhost:8080/api/getPet?id=${id}`)
+      .then(response=>response.json()).then(
+response=>{
+        console.log(response);
+        setPet({
+        id: response.id,
+        Name: response.Name,
+        Age: response.Age,
+        Gender: response.Gender,
+        Species: response.Species,
+        Shelter: response.Shelter,
+        Health: response.Health,
+      });
+    }
+      )
+    } catch (error) {
+      console.error('Error fetching pet data:', error);
+    }
 
   const handleAdoptMeClick = () => {
-    
     redirect("/adopter");
+    
   };
 
   return (
     <div>
       <h2>Pet Details</h2>
-      <p>Name: {pet.name}</p>
-      <p>Age: {pet.age}</p>
-      <p>Gender: {pet.gender}</p>
-      <p>Species: {pet.species}</p>
-      <p>Shelter: {pet.shelter}</p>
-      <p>Health: {pet.health}</p>
+      <p>Name: {pet?.Name}</p>
+      <p>Age: {pet?.Age}</p>
+      <p>Gender: {pet?.Gender}</p>
+      <p>Species: {pet?.Species}</p>
+      <p>Shelter: {pet?.Shelter}</p>
+      <p>Health: {pet?.Health}</p>
 
       <AdoptionOfferComponent pet={pet}></AdoptionOfferComponent>
 
